@@ -1,6 +1,6 @@
 package com.psjw.kakaoshareprototype.config;
 
-import com.psjw.kakaoshareprototype.config.auth.PrincipalOauth2UserService;
+import com.psjw.kakaoshareprototype.config.oauth.PrincipalOauth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;

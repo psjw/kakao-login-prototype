@@ -37,7 +37,9 @@ spring:
     hibernate:
       ddl-auto: create #update #create update none
       naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+    #      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
 
   security:
@@ -45,8 +47,15 @@ spring:
       client:
         registration:
           google:
-            client-id:
-            client-secret:
+            client-id: 137781008350-59sqdsjagp94n5vbk1vocqr066iv680m.apps.googleusercontent.com
+            client-secret: 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
             scope:
             - email
             - profile
+
+          facebook:
+            client-id: 703559754554182
+            client-secret: da0284bd044df7179af13d27d965b286
+            scope:
+            - email
+            - public_profile

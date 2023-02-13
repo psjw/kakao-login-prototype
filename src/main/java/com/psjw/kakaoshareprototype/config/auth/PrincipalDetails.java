@@ -1,12 +1,16 @@
 package com.psjw.kakaoshareprototype.config.auth;
 
 import com.psjw.kakaoshareprototype.model.User;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * packageName : com.psjw.kakaoshareprototype.config.auth
@@ -19,10 +23,18 @@ import java.util.Collection;
 //Authentication안에 User정보 있어야됨
 //User오브젝트 타입 => UserDetails 타입 객체
 // Security Session => Authentication 객체 => UserDetails(PricipaDetails)
-@RequiredArgsConstructor
-public class PrincipalDetails implements UserDetails {
+@RequiredArgsConstructor //일반로그인
+@AllArgsConstructor //OAuth로그인
+@Data
+public class PrincipalDetails implements UserDetails, OAuth2User {
     private final User user;//콤포지션
-    
+    private Map<String, Object> attributes;
+
+    @Override
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
+
     //해당 User의 권한을 리턴
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -61,5 +73,10 @@ public class PrincipalDetails implements UserDetails {
         // 1년동안 로그인 안한경우 휴면계정
         //현재시간 - 로긴시간 => 1년 초과하면 return false
         return true;
+    }
+
+    @Override
+    public String getName() {
+        return String.valueOf(attributes.get("sub"));
     }
 }

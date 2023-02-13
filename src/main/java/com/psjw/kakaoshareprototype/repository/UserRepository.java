@@ -10,4 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface UserRepository extends JpaRepository<User, Integer> {
     User findByEmail(String email); //JPA QueryMethod
+
+    User findByEmailAndProvider(String email, String provider);
 }
