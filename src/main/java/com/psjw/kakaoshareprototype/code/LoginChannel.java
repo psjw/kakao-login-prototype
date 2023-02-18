@@ -9,6 +9,7 @@ public enum LoginChannel {
     GOOGLE("google"), KAKAO("kakao"), FACEBOOK("facebook"), NAVER("naver");
     private String code;
 
+
     LoginChannel(String code) {
         this.code = code;
     }
